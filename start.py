@@ -5,6 +5,8 @@
 # Licence: GNU/GPL
 ############################################################################
 import pyglet
+import random
+import glob
 
 
 # from pyglet.window.key import LEFT, RIGHT, UP, DOWN, LCTRL
@@ -26,13 +28,13 @@ class SpaceObject(object):
         self.speed_y=speed_y
 
         self.img = pyglet.image.load(img_path)
-        self.img.anchor_x = img.width // 2
-        self.img.anchor_y = img.height // 2
+        self.img.anchor_x = self.img.width // 2
+        self.img.anchor_y = self.img.height // 2
         self.sprite = pyglet.sprite.Sprite(self.img, batch=batch)
 
     def move(self,dt:float):
-        self.sprite.x += self.speed_x * dt
-        self.sprite.y += self.speed_y * dt
+        self.sprite.x += self.speed_x * dt * 10
+        self.sprite.y += self.speed_y * dt * 5
 
 @window.event
 def on_draw():
@@ -60,10 +62,21 @@ def on_mouse_press(x, y, button, mod):
 def tick(dt):
     suter.move(dt)
     bubble.move(dt)
+    bubble2.move(dt)
+    for o in objekty:
+        o.move(dt)
     #print(dt)
 
 suter = SpaceObject("img/meteorBrown_big1.png", 10, 4)
 bubble = SpaceObject("img/bubble.png", 4, 8)
+bubble2 = SpaceObject("img/bubble.png", 2, 8)
+objekty= []
+for _ in range(22):
+    o = SpaceObject(
+        random.choice(glob.glob("img/*.png")),
+        random.randint(0,20),
+        random.randint(0,20))
+    objekty.append(o)
 
 # funkce tick se spustí 30x za sekundu
 pyglet.clock.schedule_interval(tick, 1 / 30)
