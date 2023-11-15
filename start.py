@@ -17,16 +17,22 @@ window = pyglet.window.Window(width=800, height=600)
 batch = pyglet.graphics.Batch()  # pro optimalizované vyreslování objektů
 
 
-img = pyglet.image.load("img/bubble.png")
-img.anchor_x = img.width // 2
-img.anchor_y = img.height // 2
+class SpaceObject(object):
+    speed_x=0
+    speed_y=0
 
+    def __init__(self, img_path: str, speed_x=0, speed_y=0):
+        self.speed_x=speed_x
+        self.speed_y=speed_y
 
-ship = pyglet.sprite.Sprite(img, batch=batch)
+        self.img = pyglet.image.load(img_path)
+        self.img.anchor_x = img.width // 2
+        self.img.anchor_y = img.height // 2
+        self.sprite = pyglet.sprite.Sprite(self.img, batch=batch)
 
-img = pyglet.image.load("img/meteorBrown_big1.png")
-shuter = pyglet.sprite.Sprite(img, batch=batch)
-
+    def move(self,dt:float):
+        self.sprite.x += self.speed_x * dt
+        self.sprite.y += self.speed_y * dt
 
 @window.event
 def on_draw():
@@ -52,11 +58,12 @@ def on_mouse_press(x, y, button, mod):
 
 
 def tick(dt):
-    ship.x += 3
-    ship.y += 3
-    shuter.x += 7
-    print(dt)
+    suter.move(dt)
+    bubble.move(dt)
+    #print(dt)
 
+suter = SpaceObject("img/meteorBrown_big1.png", 10, 4)
+bubble = SpaceObject("img/bubble.png", 4, 8)
 
 # funkce tick se spustí 30x za sekundu
 pyglet.clock.schedule_interval(tick, 1 / 30)
