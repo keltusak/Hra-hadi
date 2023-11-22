@@ -23,7 +23,7 @@ class SpaceObject(object):
     speed_x=0
     speed_y=0
 
-    def __init__(self, img_path: str, speed_x=0, speed_y=0):
+    def __init__(self, img_path: str, speed_x=0, speed_y=0, batch=None):
         self.speed_x=speed_x
         self.speed_y=speed_y
 
@@ -35,6 +35,21 @@ class SpaceObject(object):
     def move(self,dt:float):
         self.sprite.x += self.speed_x * dt * 10
         self.sprite.y += self.speed_y * dt * 5
+
+class Meteor(SpaceObject):
+
+    speed_x=500
+    speed_y=500
+
+    def __init__(self, position_x, position_y, batch):
+        super().__init__(img_path="img/meteorBrown_big1.png", batch=batch)
+        self.sprite.x = position_x
+        self.sprite.y = position_y
+        
+meteor1=Meteor(position_x=50, position_y=50,batch=(batch))
+meteor2=Meteor(position_x=50, position_y=50,batch=(batch))
+meteor3=Meteor(position_x=50, position_y=50,batch=(batch))
+
 
 @window.event
 def on_draw():
