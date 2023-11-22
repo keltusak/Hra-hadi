@@ -23,7 +23,8 @@ class SpaceObject(object):
     speed_x=0
     speed_y=0
 
-    def __init__(self, img_path: str, speed_x=0, speed_y=0, batch=None):
+    def __init__(self, img_path: str, speed_x=0, speed_y=0, batch=None,position_x=0,position_y=0):
+        super() .__init__(img=self.img, batch=batch)
         self.speed_x=speed_x
         self.speed_y=speed_y
 
@@ -31,6 +32,8 @@ class SpaceObject(object):
         self.img.anchor_x = self.img.width // 2
         self.img.anchor_y = self.img.height // 2
         self.sprite = pyglet.sprite.Sprite(self.img, batch=batch)
+        self.sprite.x = position_x
+        self.sprite.y = position_y
 
     def move(self,dt:float):
         self.sprite.x += self.speed_x * dt * 10
@@ -42,13 +45,15 @@ class Meteor(SpaceObject):
     speed_y=500
 
     def __init__(self, position_x, position_y, batch):
-        super().__init__(img_path="img/meteorBrown_big1.png", batch=batch)
+        super().__init__(img_path="img/meteorBrown_big1.png",position_x=position_x, position_y=position_y, batch=batch)
         self.sprite.x = position_x
         self.sprite.y = position_y
-        
+
+class GreyMeteor(Meteor):
+
 meteor1=Meteor(position_x=50, position_y=50,batch=(batch))
-meteor2=Meteor(position_x=50, position_y=50,batch=(batch))
-meteor3=Meteor(position_x=50, position_y=50,batch=(batch))
+meteor2=Meteor(position_x=100, position_y=100,batch=(batch))
+meteor3=Meteor(position_x=150, position_y=150,batch=(batch))
 
 
 @window.event
