@@ -23,11 +23,7 @@ class SpaceObject(pyglet.sprite.Sprite):
     speed_x=0
     speed_y=0
 
-    def __init__(self, img_path: str, speed_x=0, speed_y=0, batch=None,position_x=0,position_y=0):
-        self.img=pyglet.image.load(img_path)
-        #super() .__init__(img=self.img, batch=batch)
-        self.speed_x=speed_x
-        self.speed_y=speed_y
+    def __init__(self, img_path: str, batch=None,position_x=0,position_y=0):
 
         self.img = pyglet.image.load(img_path)
         self.img.anchor_x = self.img.width // 2
@@ -45,17 +41,14 @@ class Meteor(SpaceObject):
     speed_x=500
     speed_y=500
 
-    def __init__(self, position_x, position_y, batch,img_path="img/meteorBrown_big1.png"):
-        super().__init__(img_path,position_x=position_x, position_y=position_y, batch=batch)
+    def __init__(self, position_x, position_y, batch, img_path = "img/meteorBrown_big1.png"):
+        super().__init__(img_path, position_x=position_x, position_y=position_y, batch=batch)
         self.sprite.x = position_x
         self.sprite.y = position_y
 
 
 class BrownMeteor(Meteor):
     
-    #speed_x=500
-    #speed_y=500
-
     def __init__(self, position_x, position_y, batch):
         super().__init__(img_path="img/meteorBrown_big1.png",position_x=position_x, position_y=position_y, batch=batch)
         self.sprite.x = position_x
@@ -99,27 +92,27 @@ def on_mouse_press(x, y, button, mod):
     ship.y = y
 
 
-def tick(dt):
-    suter.move(dt)
-    bubble.move(dt)
-    bubble2.move(dt)
-    for o in objekty:
-        o.move(dt)
+#def tick(dt):
+    #suter.move(dt)
+    #bubble.move(dt)
+    #bubble2.move(dt)
+    #for o in objekty:
+        #o.move(dt)
     #print(dt)
 
-suter = SpaceObject("img/meteorBrown_big1.png", 10, 4)
-bubble = SpaceObject("img/bubble.png", 4, 8)
-bubble2 = SpaceObject("img/bubble.png", 2, 8)
-objekty= []
-for _ in range(22):
-    o = SpaceObject(
-        random.choice(glob.glob("img/*.png")),
-        random.randint(0,20),
-        random.randint(0,20))
-    objekty.append(o)
+#suter = SpaceObject("img/meteorBrown_big1.png", 10, 4)
+#bubble = SpaceObject("img/bubble.png", 4, 8)
+#bubble2 = SpaceObject("img/bubble.png", 2, 8)
+#objekty= []
+#for _ in range(22):
+    #o = SpaceObject(
+        #random.choice(glob.glob("img/*.png")),
+        #random.randint(0,20),
+        #random.randint(0,20))
+    #objekty.append(o)
 
 # funkce tick se spustí 30x za sekundu
-pyglet.clock.schedule_interval(tick, 1 / 30)
+#pyglet.clock.schedule_interval(tick, 1 / 30)
 
 # nekonečná smyčka ve které se čeká na události, které se následně obsluhují
 pyglet.app.run()
