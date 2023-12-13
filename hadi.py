@@ -8,7 +8,7 @@ class pole(hra):
 
 class player(hra):
     
-    def hod
+    def hod(random.randint(1,6))
 
 class had(pole):
 
