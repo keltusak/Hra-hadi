@@ -1,17 +1,35 @@
 import random
 import glob
 
-class hra:
-    def _init_(self)
+class Game:
+    def _init_(self):
+
+    def players():
+        players = int(input("Chose number of players in game: "))
+        return players
         
-class pole(hra):
-    for i in range(0,100):
+class Field(Game):
+    list = []
+    for i in range (0,100):
+        list.append(i)
 
-class player(hra):
-    
-    def hod(random.randint(1,6))
+class Player(Game):
+    def _init_(self):
+        self.position = 1
 
-class had(pole):
+    def hod():
+        move = random.randint(1,6)
+        while (move % 6 == 0):
+            move += random.randint(1,6)
+            
+            
+                
+            
+                
+        position = self.position + hod
 
-class zebrik(pole):
+
+class Snake(Field):
+
+class Ladder(Field):
         
