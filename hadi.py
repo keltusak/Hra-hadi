@@ -17,16 +17,17 @@ class Player(Game):
     def _init_(self):
         self.position = 1
 
-    def hod():
+    def roll():
         move = random.randint(1,6)
         while (move % 6 == 0):
             move += random.randint(1,6)
-            
-            
+        position += move
+        return roll
+           
                 
             
                 
-        position = self.position + hod
+       
 
 
 class Snake(Field):
