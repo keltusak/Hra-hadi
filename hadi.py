@@ -5,7 +5,7 @@ class Game:
         pass
     def players(self):
         self.players = int(input("Chose number of players in game: "))
-        
+        return self.players
         
 class Field(Game):
     list = []
@@ -13,10 +13,14 @@ class Field(Game):
         list.append(i)
 
 class Player(Game):
-    def _init_(self):
-        self.position = 1
+    def _init_(self, player, position):
+        self.position = position
+        self.player = player
 
-    def roll(self):
+    def __init__(self, name):
+        self.name = name
+
+    def roll():
         move = random.randint(1,6)
         while (move % 6 == 0):
             move += random.randint(1,6)
