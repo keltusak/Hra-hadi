@@ -1,12 +1,11 @@
 import random
-import glob
 
 class Game:
     def _init_(self):
-
-    def players():
-        players = int(input("Chose number of players in game: "))
-        return players
+        pass
+    def players(self):
+        self.players = int(input("Chose number of players in game: "))
+        
         
 class Field(Game):
     list = []
@@ -17,7 +16,7 @@ class Player(Game):
     def _init_(self):
         self.position = 1
 
-    def roll():
+    def roll(self):
         move = random.randint(1,6)
         while (move % 6 == 0):
             move += random.randint(1,6)
@@ -31,6 +30,6 @@ class Player(Game):
 
 
 class Snake(Field):
-
+    pass
 class Ladder(Field):
-        
+    pass        
